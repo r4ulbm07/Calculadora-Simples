@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+.calculadora {
+    display: inline-block;
+    padding: 20px;
+    border: 2px solid #000;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}
+
+input, select, button {
+    margin: 5px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+    </style>
+</head>
+<body>
+    <h1>CALCULADORA</h1>
+    <div class="calculadora">
+        <input type="number" id="num1" placeholder="Número 1">
+        <input type="number" id="num2" placeholder="Número 2">
+        <select id="operacao">
+            <option value="soma">+</option>
+            <option value="subtracao">-</option>
+            <option value="multiplicacao">×</option>
+            <option value="divisao">÷</option>
+        </select>
+        <button onclick="calcular()">Calcular</button>
+        <p>Resultado: <span id="resultado"></span></p>
+    </div>
+
+    <script>
+        function calcular() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let operacao = document.getElementById("operacao").value;
+            let resultado;
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById("resultado").innerText = "Erro: Insira números válidos.";
+                return;
+            }
+
+            switch (operacao) {
+                case "soma":
+                    resultado = num1 + num2;
+                    break;
+                case "subtracao":
+                    resultado = num1 - num2;
+                    break;
+                case "multiplicacao":
+                    resultado = num1 * num2;
+                    break;
+                case "divisao":
+                    resultado = num2 !== 0 ? num1 / num2 : "Erro: Divisão por zero!";
+                    break;
+                default:
+                    resultado = "Erro: Operação inválida.";
+            }
+
+            document.getElementById("resultado").innerText = resultado;
+        }
+    </script>
+</body>
+</html>
